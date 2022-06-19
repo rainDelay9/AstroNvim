@@ -3,6 +3,13 @@ local map = vim.keymap.set
 
 map("", "<Space>", "<Nop>") -- disable space because leader
 
+-- personal --
+vim.cmd[[nnoremap <Leader>w :w<CR>]]
+
+-- vim-expland-region --
+vim.cmd[[vmap v <Plug>(expand_region_expand)]]
+vim.cmd[[vmap <S-v> <Plug>(expand_region_shrink)]]
+
 -- Normal --
 -- Standard Operations
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
