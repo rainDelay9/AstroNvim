@@ -5,6 +5,7 @@ map("", "<Space>", "<Nop>") -- disable space because leader
 
 -- personal --
 vim.cmd[[nnoremap <Leader>w :w<CR>]]
+map("n", "<leader>ca", "<cmd>CodeActionMenu<cr>", { desc = "Code Action Menu"})
 
 -- vim-expland-region --
 vim.cmd[[vmap v <Plug>(expand_region_expand)]]
@@ -62,10 +63,10 @@ if is_available "Comment.nvim" then
     require("Comment.api").toggle_current_linewise()
   end, { desc = "Comment line" })
   map(
-    "v",
-    "<leader>/",
-    "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>",
-    { desc = "Toggle comment line" }
+  "v",
+  "<leader>/",
+  "<esc><cmd>lua require('Comment.api').toggle_linewise_op(vim.fn.visualmode())<cr>",
+  { desc = "Toggle comment line" }
   )
 end
 
@@ -113,10 +114,10 @@ if is_available "neovim-session-manager" then
   map("n", "<leader>Sd", "<cmd>SessionManager! delete_session<cr>", { desc = "Delete session" })
   map("n", "<leader>Sf", "<cmd>SessionManager! load_session<cr>", { desc = "Search sessions" })
   map(
-    "n",
-    "<leader>S.",
-    "<cmd>SessionManager! load_current_dir_session<cr>",
-    { desc = "Load current directory session" }
+  "n",
+  "<leader>S.",
+  "<cmd>SessionManager! load_current_dir_session<cr>",
+  { desc = "Load current directory session" }
   )
 end
 

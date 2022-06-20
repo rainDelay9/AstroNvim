@@ -14,10 +14,10 @@ for _, source in ipairs {
   "core.ui",
   "configs.which-key-register",
 } do
-  local status_ok, fault = pcall(require, source)
-  if not status_ok then
-    vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
-  end
+local status_ok, fault = pcall(require, source)
+if not status_ok then
+  vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
+end
 end
 
 local Plug = vim.fn['plug#']
@@ -35,6 +35,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'weilbith/nvim-code-action-menu'
+
 vim.call('plug#end')
 
 local opts = {
@@ -46,8 +48,8 @@ local opts = {
       show_parameter_hints = true,
       parameter_hints_prefix = "",
       other_hints_prefix = "",
-      },
     },
+  },
 
   -- all the opts to send to nvim-lspconfig
   -- these override the defaults set by rust-tools.nvim
@@ -59,23 +61,23 @@ local opts = {
         assist = {
           importEnforceGranularity = true,
           importPrefix = "crate"
-          },
+        },
         cargo = {
           allFeatures = true
-          },
+        },
         checkOnSave = {
           -- default: `cargo check`
           command = "clippy"
-          },
         },
-        inlayHints = {
-          lifetimeElisionHints = {
-            enable = true,
-            useParameterNames = true
-          },
+      },
+      inlayHints = {
+        lifetimeElisionHints = {
+          enable = true,
+          useParameterNames = true
         },
-      }
-    },
+      },
+    }
+  },
 }
 
 vim.cmd("au BufWrite * :Autoformat")
@@ -84,6 +86,4 @@ require('rust-tools').setup(opts)
 
 astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
 
---map("n", "v", ":<Plug>(expand_region_expand)", { silent = true })
---map("n", "<C-v>", ":<Plug>(expand_region_shrink)" { silent = true })
 
