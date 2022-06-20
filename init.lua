@@ -36,6 +36,9 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-autoformat/vim-autoformat'
 Plug 'weilbith/nvim-code-action-menu'
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'neoclide/coc.nvim'
 
 vim.call('plug#end')
 
