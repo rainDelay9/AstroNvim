@@ -1,5 +1,44 @@
-local config = {
+local rust_tools_opts = {
+  -- rust-tools options
+  tools = {
+    autoSetHints = true,
+    hover_with_actions = true,
+    inlay_hints = {
+      show_parameter_hints = true,
+      parameter_hints_prefix = "",
+      other_hints_prefix = "",
+    },
+  },
 
+  -- all the opts to send to nvim-lspconfig
+  -- these override the defaults set by rust-tools.nvim
+  -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+  -- https://rust-analyzer.github.io/manual.html#features
+  server = {
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importEnforceGranularity = true,
+          importPrefix = "crate"
+        },
+        cargo = {
+          allFeatures = true
+        },
+        checkOnSave = {
+          -- default: `cargo check`
+          command = "clippy"
+        },
+      },
+      inlayHints = {
+        lifetimeElisionHints = {
+          enable = true,
+          useParameterNames = true
+        },
+      },
+    }
+  },
+}
+local config = {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
@@ -71,6 +110,8 @@ ui = {
   telescope_select = true,
 },
 
+
+
 -- Configure plugins
 plugins = {
   -- Add plugins, the packer syntax without the "use"
@@ -87,6 +128,9 @@ plugins = {
         --     require("lsp_signature").setup()
         --   end,
         -- },
+        --
+
+
         {
           'saecki/crates.nvim',
           tag = 'v0.2.1',
@@ -94,6 +138,49 @@ plugins = {
           config = function()
             require('crates').setup()
           end,
+        },
+        {
+          'f-person/git-blame.nvim'
+        },
+        {
+          'folke/trouble.nvim'
+        },
+        {
+          'itchyny/lightline.vim'
+        },
+        {
+          'simrat39/rust-tools.nvim',
+          config = function()
+            require('rust-tools').setup(rust_tools_opts)
+          end,
+        },
+        {
+          'j-hui/fidget.nvim'
+        },
+        {
+          'neoclide/coc-git'
+        },
+        {
+          'junegunn/fzf.vim'
+        },
+        {
+          'terryma/vim-expand-region'
+        },
+        {
+          'vim-autoformat/vim-autoformat'
+        },
+        {
+          'weilbith/nvim-code-action-menu'
+        },
+        {
+          'leafgarland/typescript-vim'
+        },
+        {
+          'pangloss/vim-javascript'
+        },
+        {
+          'neoclide/coc.nvim',
+          branch = 'release'
         }
       },
       -- All other entries override the setup() call for default plugins
