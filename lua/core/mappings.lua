@@ -280,13 +280,20 @@ map("v", "<", "<gv", { desc = "unindent line" })
 map("v", ">", ">gv", { desc = "indent line" })
 
 -- Move rows up/down
-map("v",  "<A-j>", ":m .+1<CR>==", {desc = "move line down"})
+map("x",  "<A-j>", ":m .+1<CR>==", {desc = "move line down"})
 map("n",  "<A-j>", ":m .+1<CR>==", {desc = "move line down"})
 map("i",  "<A-j>", ":m .+1<CR>==", {desc = "move line down"})
-map("v",  "<A-k>", ":m .-2<CR>==", {desc = "move line up"})
+map("x",  "<A-k>", ":m .-2<CR>==", {desc = "move line up"})
 map("n",  "<A-k>", ":m .-2<CR>==", {desc = "move line up"})
 map("i",  "<A-k>", ":m .-2<CR>==", {desc = "move line up"})
-map("v", "p", '"_dP', {desc = "replace selected text without copying"})
+map("x", "p", '"_dP', {desc = "replace selected text without copying"})
+
+-- Visual Block --
+-- Move text up and down
+map("x", "J", ":move '>+1<CR>gv-gv")
+map("x", "K", ":move '<-2<CR>gv-gv")
+map("x", "<A-j>", ":move '>+1<CR>gv-gv")
+map("x", "<A-k>", ":move '<-2<CR>gv-gv")
 
 -- Improved Terminal Mappings
 map("t", "<esc>", "<C-\\><C-n>", { desc = "Terminal normal mode" })
