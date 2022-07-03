@@ -233,15 +233,16 @@ local config = {
       },
       {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', 'navarasu/onedark.nvim', opt = true },
+        requires = { 'kyazdani42/nvim-web-devicons', 'navarasu/onedark.nvim'},
         config = function()
           require('lualine').setup {
             options = {
+              opt = true,
               theme = 'onedark'
             }
           }
         end,
-      }
+      },
     },
     -- All other entries override the setup() call for default plugins
     ["null-ls"] = function(config)
